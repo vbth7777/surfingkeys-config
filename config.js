@@ -13,7 +13,7 @@ api.unmap('<ctrl-i>');
 settings.smoothScroll = true;
 api.Hints.style('font-family: Arial;background: #fff;border-color: #000; color: #000;')
 api.unmap('x')
-api.mapkey('fe', 'Click elements include extra elements', function() {
+api.mapkey(';fe', 'Click elements include extra elements', function() {
     api.Hints.create('*[href], *[src], div', function(el){
         el.click();
     })
