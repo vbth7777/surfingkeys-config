@@ -1,21 +1,3 @@
-//Startup 
-if (!("path" in Event.prototype))
-Object.defineProperty(Event.prototype, "path", {
-  get: function() {
-    var path = [];
-    var currentElem = this.target;
-    while (currentElem) {
-      path.push(currentElem);
-      currentElem = currentElem.parentElement;
-    }
-    if (path.indexOf(window) === -1 && path.indexOf(document) === -1)
-      path.push(document);
-    if (path.indexOf(window) === -1)
-      path.push(window);
-    return path;
-  }
-});
-
 // an example to create a new mapping `ctrl-y`
 api.mapkey('<ctrl-y>', 'Show me the money', function() {
     Front.showPopup('a well-known phrase uttered by characters in the 1996 film Jerry Maguire (Escape to close).');
@@ -31,67 +13,23 @@ api.unmap('<ctrl-i>');
 settings.smoothScroll = true;
 api.Hints.style('font-family: Arial;background: #fff;border-color: #000; color: #000;')
 api.unmap('x')
+api.mapkey('fe', 'Click elements include extra elements', function() {
+    api.Hints.create('*[href], *[src], div', function(el){
+        el.click();
+    })
+});
 api.mapkey(';x', 'Remove element', function() {
     api.Hints.create("", function(element){
         element.remove();
     })
 });
+api.mapkey(';ff', 'Focus first video player', function() {
+});
 api.mapkey(';fc', 'Focus video player', function() {
-    api.Hints.create("*", function(element){
-        element?.focus();
+    api.Hints.create("", function(element){
+        element.remove();
     })
 });
-api.mapkey(';ff', 'Focus video player', function() {
-    api.Hints.create("video", function(element){
-        element?.focus();
-    })
-});
-function clickLikeButtonYoutube(){
-    document.querySelector("#segmented-like-button > ytd-toggle-button-renderer > yt-button-shape > button > yt-touch-feedback-shape > div").click();
-}
-function checkSaveButtonTextOnYoutube(text){
-    return text.indexOf('lưu') != -1 || text.indexOf('save') != -1 || text.indexOf('playlist') != -1 || text.indexOf('danh sách phát') != -1
-}
-function clickPlaylistButtonYoutube(){
-    let outBtns = Array.from(document.querySelectorAll("#flexible-item-buttons > ytd-button-renderer button"));
-    let isOut = false;
-    for(let btn of outBtns){
-        const text = btn.ariaLabel.trim().toLowerCase()
-        if(checkSaveButtonTextOnYoutube(text)){
-            btn.click();
-            isOut = true;
-            break;
-        }
-    }
-    if(isOut) return;
-    document.querySelector("#button-shape > button").click()
-    let btns = document.querySelectorAll('.ytd-popup-container ytd-menu-service-item-renderer');
-    for(let btn of btns){
-        const text = btn.innerText.trim().toLowerCase()
-        if(checkSaveButtonTextOnYoutube(text)){
-            btn.click();
-            break;
-        }
-    }
-}
-function preventKey(key) {
-  document.addEventListener('keydown', function(event) {
-    if (event.key === key) {
-      event.preventDefault();
-    }
-  });
-}
-
-api.mapkey('sk', 'Click like button', function(){
-    clickLikeButtonYoutube()
-}, {domain: /youtube.com/ig})
-api.mapkey('sp', 'Click save playlist button', function(){
-    clickPlaylistButtonYoutube();
-}, {domain: /youtube.com/ig})
-api.mapkey('sv', 'Click like and save playlist button', function(){
-    clickLikeButtonYoutube()
-    clickPlaylistButtonYoutube();
-}, {domain: /youtube.com/ig})
 
 // set theme
 //settings.theme = `
@@ -395,3 +333,7 @@ input {
 //  font-weight: var(--font-weight);
 //}
 `;
+
+
+
+
