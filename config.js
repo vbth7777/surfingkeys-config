@@ -1,6 +1,6 @@
 // an example to create a new mapping `ctrl-y`
 api.mapkey('<ctrl-y>', 'Show me the money', function() {
-    Front.showPopup('a well-known phrase uttered by characters in the 1996 film Jerry Maguire (Escape to close).');
+  Front.showPopup('a well-known phrase uttered by characters in the 1996 film Jerry Maguire (Escape to close).');
 });
 
 // an example to replace `T` with `gt`, click `Default mappings` to see how `T` works.
@@ -14,21 +14,21 @@ settings.smoothScroll = true;
 api.Hints.style('font-family: Arial;background: #fff;border-color: #000; color: #000;')
 api.unmap('x')
 api.mapkey(';fe', 'Click elements include extra elements', function() {
-    api.Hints.create('*[href], *[src], div', function(el){
-        el.click();
-    })
+  api.Hints.create('*[href], *[src], div', function(el) {
+    el.click();
+  })
 });
 api.mapkey(';x', 'Remove element', function() {
-    api.Hints.create("", function(element){
-        element.remove();
-    })
+  api.Hints.create("", function(element) {
+    element.remove();
+  })
 });
 api.mapkey(';ff', 'Focus first video player', function() {
 });
 api.mapkey(';fc', 'Focus video player', function() {
-    api.Hints.create("", function(element){
-        element.remove();
-    })
+  api.Hints.create("", function(element) {
+    element.remove();
+  })
 });
 
 // set theme
